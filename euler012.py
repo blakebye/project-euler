@@ -22,11 +22,9 @@ def prime_factorize(value):
     frequency as values. 8 would become {2:3}, 10 {5:1, 2:1}
     The reason for doing this is to help with the Tau function.
     """
-    dict_of_primes = dict()
-    factored = False
+    dict_of_primes = {value: 1}
     for main_divisor in xrange(2, int(math.sqrt(value)) + 1):
-        if not value % main_divisor and not value == main_divisor:
-            factored = True
+        if not value % main_divisor:
             dict_of_primes = prime_factorize(main_divisor)
             dict_two = prime_factorize(value / main_divisor)
             for prime in dict_two:
@@ -34,9 +32,7 @@ def prime_factorize(value):
                     dict_of_primes[prime] = dict_two[prime]
                 else:
                     dict_of_primes[prime] += dict_two[prime]
-            break
-    if not factored:
-        dict_of_primes[value] = 1
+            return dict_of_primes
     return dict_of_primes
 
 

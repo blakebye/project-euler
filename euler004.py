@@ -23,7 +23,7 @@ def largest_palindromic_product(digits):
     max_factor = 10 ** digits
     max_palindromic_product = int()
     for i in xrange(max_factor, 1, -1):
-        for j in xrange(990, 0, -11):
+        for j in xrange(max_factor, 1, -1):
             if is_palindrome(i * j):
                 max_palindromic_product = max(max_palindromic_product, i * j)
                 break

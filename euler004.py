@@ -12,6 +12,7 @@ def divisible_by_x_digits(number, digits):
             if factor_one * factor_two < number:
                 break
 
+
 def max_palindrome(digits):
     """
     This function takes a number of digits and starts generating the
@@ -19,7 +20,7 @@ def max_palindrome(digits):
     those are divisible by two 3-digit numbers and returns the first that is.
     """
     list_of_palindromes = list()
-    max_value  = (10 ** digits - 1) ** 2
+    max_value = (10 ** digits - 1) ** 2
     if digits % 2:
         max_value -= 4
     for number in xrange(max_value, 1, -11):
@@ -31,4 +32,10 @@ def max_palindrome(digits):
         if palindrome and divisible_by_x_digits(number, digits):
             return number
 
-print max_palindrome(3)
+
+def main():
+    test_value = 3
+    print max_palindrome(test_value)
+
+if __name__ == "__main__":
+    main()

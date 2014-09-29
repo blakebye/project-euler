@@ -10,7 +10,7 @@ def sum_of_multiples(max_value):
     up to a maximum of the function's only input, max_value.
     """
     total = int()
-    for value in range(max_value):
+    for value in xrange(max_value):
         if (not value % 3) or (not value % 5):
             total += value
     return total

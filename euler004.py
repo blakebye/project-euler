@@ -3,8 +3,6 @@
 This module solves Project Euler #4
 """
 
-TEST_VALUE = 3
-
 
 def is_palindrome(value):
     """
@@ -30,4 +28,10 @@ def largest_palindromic_product(digits):
                 max_palindromic_product = max(max_palindromic_product, i * j)
     return max_palindromic_product
 
-print largest_palindromic_product(TEST_VALUE)
+
+def main():
+    test_value = 3
+    print largest_palindromic_product(test_value)
+
+if __name__ == "__main__":
+    main()

@@ -50,7 +50,7 @@ def total_factors(value):
     return total
 
 
-def triangle_divisible_by(value):
+def triangle_divisible_by(number_of_factors):
     """
     This function goes through every triangle number, and uses another
     trick of the tau function to more quickly determine how many
@@ -58,7 +58,7 @@ def triangle_divisible_by(value):
     """
     triangle_number = int()
     divisors = int()
-    while divisors <= value:
+    while divisors <= number_of_factors:
         triangle_number += 1
         if not triangle_number % 2:
             f_1 = total_factors(triangle_number / 2)

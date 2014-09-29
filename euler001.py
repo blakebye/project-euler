@@ -3,8 +3,6 @@
 This module solves Project Euler #1
 """
 
-TEST_VALUE = 1000
-
 
 def sum_of_multiples(max_value):
     """
@@ -17,4 +15,13 @@ def sum_of_multiples(max_value):
             total += value
     return total
 
-print sum_of_multiples(TEST_VALUE)
+
+def main():
+    """
+    Solves problem.
+    """
+    test_value = 1000
+    print sum_of_multiples(test_value)
+
+if __name__ == "__main__":
+    main()

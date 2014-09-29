@@ -4,35 +4,31 @@ This module solves Project Euler #4
 """
 
 
-def is_palindrome(value):
-    """
-    This function takes a value and
-    returns if it's a palindrome or not.
-    """
-    for digit in xrange(len(str(value)) / 2):
-        if str(value)[digit] != str(value)[-digit - 1]:
-            return False
-    return True
-
-
-def largest_palindromic_product(digits):
-    """
-    This function takes every product up to the number of specified
-    digits and returns the highest palindromic product there was.
-    """
-    max_factor = 10 ** digits
-    max_palindromic_product = int()
-    for i in xrange(max_factor, 1, -1):
-        for j in xrange(max_factor, 1, -1):
-            if is_palindrome(i * j):
-                max_palindromic_product = max(max_palindromic_product, i * j)
+def divisible_by_x_digits(number, digits):
+    for factor_one in xrange(10 ** digits - 1, 1, -1):
+        for factor_two in xrange(10 ** digits - 1, 1, -1):
+            if factor_one * factor_two == number:
+                return True
+            if factor_one * factor_two < number:
                 break
-    return max_palindromic_product
 
+def max_palindrome(digits):
+    """
+    This function takes a number of digits and starts generating the
+    maximum possible palindromes. Then it checks one at a time if
+    those are divisible by two 3-digit numbers and returns the first that is.
+    """
+    list_of_palindromes = list()
+    max_value  = (10 ** digits - 1) ** 2
+    if digits % 2:
+        max_value -= 4
+    for number in xrange(max_value, 1, -11):
+        palindrome = True
+        for char in xrange(len(str(number)) / 2):
+            if str(number)[char] != str(number)[-char - 1]:
+                palindrome = False
+                break
+        if palindrome and divisible_by_x_digits(number, digits):
+            return number
 
-def main():
-    test_value = 3
-    print largest_palindromic_product(test_value)
-
-if __name__ == "__main__":
-    main()
+print max_palindrome(3)

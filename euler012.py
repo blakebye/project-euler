@@ -50,17 +50,25 @@ def total_factors(value):
     return total
 
 
-def triangle_divisible_by(number_of_factors):
+def triangle_divisible_by(value):
     """
-    Generate all triangle numbers in order until one exceeds the
-    given number of factors. This is the solution to the problem.
+    This function goes through every triangle number, and uses another
+    trick of the tau function to more quickly determine how many
+    factors a specific value has.
     """
-    counter = int()
-    while True:
-        counter += 1
-        triangle = get_triangle(counter)
-        if total_factors(triangle) > number_of_factors:
-            return triangle
+    triangle_number = int()
+    divisors = int()
+    while divisors <= value:
+        triangle_number += 1
+        if not triangle_number % 2:
+            f_1 = total_factors(triangle_number / 2)
+            f_2 = total_factors(triangle_number + 1)
+        else:
+            f_1 = total_factors((triangle_number + 1) / 2)
+            f_2 = total_factors(triangle_number)
+        divisors = f_1 * f_2
+    triangle = int(triangle_number / 2. * (triangle_number + 1))
+    return triangle
 
 if __name__ == "__main__":
     TEST_VALUE = 500

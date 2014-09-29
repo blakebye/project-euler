@@ -5,19 +5,15 @@ This module solves Project Euler #3
 
 import math
 
-TEST_VALUE = 600851475143
-
 
 def factors(value):
     """
     This function returns a high-to-low
     sorted list of all factors of given value.
     """
-    list_of_factors = list()
-    for potential in range(2, int(math.sqrt(value)) + 1):
-        if not value % potential:
-            list_of_factors.append(potential)
-            list_of_factors.append(value / potential)
+    possibles = xrange(2, int(math.sqrt(value)) + 1)
+    list_of_factors = [a for b in ((factor, value / factor) for
+                       factor in possibles if not value % factor) for a in b]
     return sorted(set(list_of_factors), reverse=True)
 
 
@@ -27,12 +23,22 @@ def largest_prime_factor(value):
     compares them to themselves to determine which of them is
     the highest prime. Often times, factors have similar base factors.
     """
-    for factor in factors(value):
+    list_of_factors = factors(value)
+    for factor in list_of_factors:
         prime = True
-        for divisor in factors(value):
+        for divisor in list_of_factors:
             if not factor % divisor and not factor == divisor:
                 prime = False
         if prime:
             return factor
 
-print largest_prime_factor(TEST_VALUE)
+
+def main():
+    """
+    Solves problem.
+    """
+    test_value = 600851475143
+    print largest_prime_factor(test_value)
+
+if __name__ == "__main__":
+    main()

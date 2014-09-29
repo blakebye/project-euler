@@ -3,8 +3,6 @@
 This module solves Project Euler #2
 """
 
-TEST_VALUE = 4000000
-
 
 def gen_fib(max_value):
     """
@@ -31,4 +29,13 @@ def sum_of_even_fib(max_value):
             total += fib_term
     return total
 
-print sum_of_even_fib(TEST_VALUE)
+
+def main():
+    """
+    Solves problem.
+    """
+    test_value = 4000000
+    print sum_of_even_fib(test_value)
+
+if __name__ == "__main__":
+    main()

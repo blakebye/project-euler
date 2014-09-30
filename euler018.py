@@ -3,6 +3,7 @@
 This module solves Project Euler #18
 """
 
+
 def generate_triangle_number(which):
     """
     This function will return a triangle number. Which
@@ -10,7 +11,12 @@ def generate_triangle_number(which):
     """
     return int(which / 2. * (which + 1))
 
+
 def triangle_text_to_lists(triangle):
+    """
+    This function takes a triangle string and gives back
+    a triangle-type list, which is just a list of lists.
+    """
     triangle_lists = list()
     line = list()
     values = triangle.split()
@@ -27,12 +33,20 @@ def triangle_text_to_lists(triangle):
     triangle_lists.append(line)
     return triangle_lists
 
+
 def funnel(triangle):
+    """
+    This function takes a triangle-type list and turns it upside down.
+    Then a parent's largest child "drips" into them, all the way down.
+    The result is the bottom of the triangle having the highest value
+    of the sum of path from top to bottom.
+    """
     triangle.reverse()
     for line_index, line in enumerate(triangle):
         for index, element in enumerate(line):
             try:
-                triangle[line_index +1][index] += max(element, line[index + 1])
+                triangle[line_index + 1][index] += max(element,
+                                                       line[index + 1])
             except IndexError:
                 pass
     return triangle.pop().pop()

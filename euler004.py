@@ -5,12 +5,16 @@ This module solves Project Euler #4
 
 
 def divisible_by_x_digits(number, digits):
-    for factor_one in xrange(10 ** digits - 1, 1, -1):
-        for factor_two in xrange(10 ** digits - 1, 1, -1):
+    max_value = 10 ** digits - 1
+    for factor_one in xrange(max_value, 1, -1):
+        for factor_two in xrange(factor_one, 0, -1):
             if factor_one * factor_two == number:
                 return True
             if factor_one * factor_two < number:
-                break
+                if factor_one != factor_two:
+                    break
+                else:
+                    return False
 
 
 def max_palindrome(digits):
@@ -35,7 +39,7 @@ def max_palindrome(digits):
 
 def main():
     test_value = 3
-    print max_palindrome(test_value)
+    return max_palindrome(test_value)
 
 if __name__ == "__main__":
-    main()
+    print main()

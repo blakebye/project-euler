@@ -12,17 +12,19 @@ def generate_prime(value, efficiency):
     It uses the prime number theorem to overshot an estimate
     of the prime and then tests up to that overshot.
     """
-    prime_list = list()
+    prime_list = [2]
     estimate = int(efficiency * value * math.log(value))
     primality = [False] * 2 + [True] * (estimate - 2)
-    for non_prime in range(4, estimate, 2):
+    for non_prime in xrange(4, estimate, 2):
         primality[non_prime] = False
-    for factor in range(len(primality)):
+    for factor in xrange(3, int(math.sqrt(len(primality)) + 1), 2):
         if primality[factor]:
-            prime_list.append(factor)
-            for non_prime in range(factor ** 2, estimate, factor * 2):
+            for non_prime in xrange(factor ** 2, estimate, factor * 2):
                 primality[non_prime] = False
-    return prime_list[value - 1]
+    for number, prime in enumerate(primality):
+        if prime:
+            prime_list.append(number)
+    return prime_list[value]
 
 
 def main():

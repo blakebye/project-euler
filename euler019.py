@@ -29,10 +29,9 @@ def count_sunday_the_firsts(start, end):
         day_to_check += ONE_DAY
     while day_to_check < end:
         day = day_to_check.day
-        if day == 1:
-            total_sundays += 1
-            day_to_check += FOUR_WEEKS
-        elif day <= 4:
+        if day <= 4:
+            if day == 1:
+                total_sundays += 1
             day_to_check += FOUR_WEEKS
         elif day <= 7:
             day_to_check += EIGHT_WEEKS

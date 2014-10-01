@@ -34,6 +34,8 @@ def greatest_power(value):
     This function crafts a super-dictionary that lists the max
     power of every prime that needs to go into the solution.
     By multiplying them all together, we find the minimum solution.
+    This uses the Tau divisor function idea that if two values
+    are coprime their product will share all of their factors.
     """
     total = 1
     high_primes = dict()
@@ -52,7 +54,7 @@ def greatest_power(value):
 
 def main():
     test_value = 20
-    print greatest_power(test_value)
+    return greatest_power(test_value)
 
 if __name__ == "__main__":
-    main()
+    print main()

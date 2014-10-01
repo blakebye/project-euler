@@ -11,9 +11,14 @@ def factors(value):
     This function returns a high-to-low
     sorted list of all factors of given value.
     """
-    possibles = xrange(2, int(math.sqrt(value)) + 1)
-    list_of_factors = [a for b in ((factor, value / factor) for
-                       factor in possibles if not value % factor) for a in b]
+    if value % 2:
+        possibles = xrange(3, int(math.sqrt(value)) + 1, 2)
+    else:
+        possibles = xrange(2, int(math.sqrt(value)) + 1)
+    list_of_factors = list()
+    for factor in possibles:
+        if not value % factor:
+            list_of_factors += [factor, value / factor]
     return sorted(set(list_of_factors), reverse=True)
 
 
@@ -38,7 +43,7 @@ def main():
     Solves problem.
     """
     test_value = 600851475143
-    print largest_prime_factor(test_value)
+    return largest_prime_factor(test_value)
 
 if __name__ == "__main__":
-    main()
+    print main()

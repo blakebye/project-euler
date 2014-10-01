@@ -3,7 +3,7 @@
 This module solves Project Euler #10
 """
 
-TEST_VALUE = 2000000
+import math
 
 
 def generate_primes(max_value):
@@ -13,12 +13,11 @@ def generate_primes(max_value):
     """
     primality = [False] * 2 + [True] * (max_value - 2)
     # prime_list = list()
-    for non_prime in range(4, max_value, 2):
+    for non_prime in xrange(4, max_value, 2):
         primality[non_prime] = False
-    for factor in range(3, len(primality), 2):
+    for factor in xrange(3, int(math.sqrt(len(primality)) + 1), 2):
         if primality[factor]:
-            # prime_list.append(factor)
-            for non_prime in range(factor ** 2, max_value, factor * 2):
+            for non_prime in xrange(factor ** 2, max_value, factor * 2):
                 primality[non_prime] = False
     return primality
 
@@ -30,9 +29,18 @@ def sum_of_primes(max_value):
     """
     total = int()
     primality = generate_primes(max_value)
-    for number in range(len(primality)):
-        if primality[number]:
+    for number, prime in enumerate(primality):
+        if prime:
             total += number
     return total
 
-print sum_of_primes(TEST_VALUE)
+
+def main():
+    """
+    Solves the problem.
+    """
+    test_value = 2000000
+    return sum_of_primes(test_value)
+
+if __name__ == "__main__":
+    print main()

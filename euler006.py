@@ -3,8 +3,6 @@
 This module solves Project Euler #6
 """
 
-TEST_VALUE = 100
-
 
 def sum_of_squares(max_value):
     """
@@ -12,7 +10,7 @@ def sum_of_squares(max_value):
     (all the squares up to max_value)
     """
     total = int()
-    for i in range(max_value + 1):
+    for i in xrange(max_value + 1):
         total += i ** 2
     return total
 
@@ -23,7 +21,7 @@ def square_of_sum(max_value):
     (the sum of all values up to max_value)
     """
     total = int()
-    for i in range(max_value + 1):
+    for i in xrange(max_value + 1):
         total += i
     return total ** 2
 
@@ -35,4 +33,13 @@ def difference(value):
     """
     return square_of_sum(value) - sum_of_squares(value)
 
-print difference(TEST_VALUE)
+
+def main():
+    """
+    Solves the problem.
+    """
+    test_value = 100
+    return difference(test_value)
+
+if __name__ == "__main__":
+    main()

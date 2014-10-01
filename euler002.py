@@ -35,7 +35,7 @@ def main():
     Solves problem.
     """
     test_value = 4000000
-    print sum_of_even_fib(test_value)
+    return sum_of_even_fib(test_value)
 
 if __name__ == "__main__":
-    main()
+    print main()

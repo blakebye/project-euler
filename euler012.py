@@ -6,15 +6,6 @@ This module solves Project Euler #12
 import math
 
 
-def get_triangle(number):
-    """
-    This function will return a triangle number. Which
-    one will be determined by the input.
-    """
-    triangle = int(number / 2. * (number + 1))
-    return triangle
-
-
 def prime_factorize(value):
     """
     This function breaks down a value to all of it's prime factors.
@@ -70,6 +61,9 @@ def triangle_divisible_by(number_of_factors):
     triangle = int(triangle_number / 2. * (triangle_number + 1))
     return triangle
 
-if __name__ == "__main__":
+def main():
     TEST_VALUE = 500
-    print triangle_divisible_by(TEST_VALUE)
+    return triangle_divisible_by(TEST_VALUE)
+
+if __name__ == "__main__":
+    print main()

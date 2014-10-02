@@ -5,32 +5,36 @@ This module solves Project Euler #14
 
 
 def collatz(start, terms):
-    if start in terms:
-        return terms[start], terms
+    term_count = int()
+    new_terms = dict()
     value = start
-    term_count = 1
-    if not value % 2:
-        value /= 2
-    else:
-        value = value * 3 + 1
-    if value in terms:
-        terms[start] = terms[value] + 1
-        return terms[value], terms
-    next = collatz(value, terms)
-    if value in terms:
-        terms[start] = terms[value] + 1
-        return terms[value], terms
-    term_count += next[0]
-    terms.update(next[1])
+    while value not in terms:
+        if not value % 2:
+            value /= 2
+        else:
+            value = value * 3 + 1
+        if value in terms:
+            break
+        term_count += 1
+        new_terms[value] = term_count
+    term_count += terms[value]
     terms[start] = term_count
+    for new_term in new_terms:
+        terms[new_term] = term_count - new_terms[new_term]
     return (term_count, terms)
 
-def max_collatz(high_start):
+def max_collatz(high_point):
     terms = {1: 1}
     longest_chain = int()
     highest_starter = int()
-    for start in xrange(high_start / 2, high_start):
-        term_count, terms = collatz(start, terms)
+    low_point = high_point / 2
+    if not low_point % 2:
+        low_point += 1
+    for start in xrange(low_point, high_point, 2):
+        if start in terms:
+            term_count = terms[start]
+        else:
+            term_count, terms = collatz(start, terms)
         if term_count > longest_chain:
             longest_chain = term_count
             highest_starter = start
